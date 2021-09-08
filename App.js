@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import HomeScreen from "./src/screens/HomeScreen";
+import TbilisiForecast from "./src/screens/TbilisiForecast";
+import BatumiForecast from "./src/screens/BatumiForecast";
+import KutaisiForecast from "./src/screens/KutaisiForecast";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    TbilisiForecast: TbilisiForecast,
+    BatumiForecast: BatumiForecast,
+    KutaisiForecast: KutaisiForecast,
   },
-});
+  {
+    initialRouteParams: "HomeScreen",
+    defaultNavigationOptions: {
+      title: "Weather Forecast",
+    },
+  }
+);
+
+export default createAppContainer(navigator);
